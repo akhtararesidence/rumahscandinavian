@@ -1329,10 +1329,6 @@ body.expired > *:not(#expired-overlay){
      SCRIPTS
      ============================== -->
 <script>
-/* ==========================================================
-   AKHTARA RESIDENCE
-   WA ROTATOR + META PIXEL + GOOGLE SHEET TRACKING
-========================================================== */
 
 /* =============================
    GOOGLE SHEET TRACKING
@@ -1428,29 +1424,6 @@ function sendTracking(data){
     });
 
 }
-
-/* ==========================================
-   WHATSAPP MESSAGE TEMPLATE
-========================================== */
-
-const WA_MESSAGES = {
-
-    default:
-        "Halo Admin, saya tertarik dengan Akhtara Residence.",
-
-    hero:
-        "Halo Admin, saya tertarik dengan Akhtara Residence.",
-
-    booking:
-        "Halo Admin, saya ingin booking unit Akhtara Residence.",
-
-    schedule:
-        "Halo Admin, saya ingin menjadwalkan survey lokasi.",
-
-    expired_popup:
-        "Halo Admin, promo di landing page saya sudah berakhir. Apakah masih ada promo terbaru?"
-
-};
 
 /* =============================
    GENERATE EVENT ID
@@ -1641,7 +1614,7 @@ function submitExpiredAntrian(event){
 ============================= */
 
 const STORAGE_KEY = "akhtara_deadline_v1";
-const PROMO_DURATION = 00 * 00 * 00 * 60 * 1000; // 3 hari
+const PROMO_DURATION = 3 * 24 * 60 * 60 * 1000; // 3 hari
 
 let deadline = localStorage.getItem(STORAGE_KEY);
 
@@ -1781,20 +1754,8 @@ function tick(){
 
 tick();
 
-setInterval(tick,1000);
+setInterval(tick,1000);  
 
-/* =============================
-   POP UP
-============================= */
-    
-function expiredPromoCTA(){
-
-    wa(
-        "expired_promo",
-        "Halo Admin, saya ingin mengetahui promo terbaru Akhtara Residence."
-    );
-
-}
 
 /* =============================
    FAQ
