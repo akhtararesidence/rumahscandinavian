@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+<head>f
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Akhtara Residence — Rumah Scandinavian 3 Kamar, Cicilan Flat Rp 3 Jutaan/Bulan | Area Kedamean-Gresik</title>
@@ -1465,98 +1465,6 @@ function generateEventID() {
 
 }
 
-/* ==========================================
-   WHATSAPP
-========================================== */
-
-function wa(cta, message){
-
-    // Generate SATU Event ID saja
-    const eventID = generateEventID();
-
-    // Jika message tidak dikirim
-    message = message || WA_MESSAGES[cta] || WA_MESSAGES.default;
-
-    message += "\n\nKode Referensi: " + eventID;
-
-    const agent = nextAgent();
-
-    /* ===== Pixel ===== */
-
-    if(typeof fbq === "function"){
-
-        fbq(
-            "track",
-            "InitiateCheckout",
-            {
-
-                content_name: "Akhtara Residence",
-
-                content_category: cta
-
-            },
-            {
-
-                eventID: eventID
-
-            }
-        );
-
-    }
-    /* ===== Spreadsheet ===== */
-
-    sendTracking({
-
-    event_id: eventID,
-
-    landing_page: location.href,
-
-    cta: cta,
-
-    admin: agent.name,
-
-    user_agent: navigator.userAgent,
-
-    no_whatsapp: "",
-
-    status: "Lead",
-
-    lead_score: "Cold",
-
-    catatan: "",
-
-    utm_source: TRACKING.utm_source,
-
-    utm_medium: TRACKING.utm_medium,
-
-    utm_campaign: TRACKING.utm_campaign,
-
-    utm_content: TRACKING.utm_content,
-
-    fbclid: TRACKING.fbclid,
-
-    fbp: TRACKING.fbp,
-
-    fbc: TRACKING.fbc
-
-});
-
-    /* ===== WhatsApp ===== */
-
-    const url =
-        "https://wa.me/" +
-        agent.phone +
-        "?text=" +
-        encodeURIComponent(message);
-
-    window.open(
-        url,
-        "_blank",
-        "noopener,noreferrer"
-    );
-
-}
-
 /* =============================
    ANTRIAN CS (LEAD FORM)
 ============================= */
@@ -1620,8 +1528,7 @@ function collectAndSendLead(namaId, waId, errorId, sourceCta, catatan){
 
     const message =
         "Halo Admin, saya " + nama + " (No. WA: " + phone + "). " +
-        "Saya masuk antrian dari website dan ingin tanya-tanya soal Akhtara Residence 🙏" +
-        "\n\nKode Referensi: " + eventID;
+        "Saya masuk antrian dari website dan ingin tanya-tanya soal Akhtara Residence 🙏"
 
     /* ===== Pixel ===== */
 
@@ -1663,7 +1570,7 @@ function collectAndSendLead(namaId, waId, errorId, sourceCta, catatan){
 
         status: "Lead",
 
-        lead_score: "Warm",
+        lead_score: "Cold",
 
         catatan: catatan,
 
